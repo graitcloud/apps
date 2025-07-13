@@ -11,7 +11,7 @@ cephClusterSpec:
     allowMultiplePerNode: true
   dashboard:
     enabled: true
-    ssl: false
+    ssl: true
   storage:
     # AUTOMATIC DEVICE DISCOVERY with safety filter
     useAllNodes: true
@@ -135,3 +135,35 @@ monitoring:
   # Uncomment when Prometheus is ready:
   # createPrometheusRules: true
   # metricsDisabled: false 
+
+ingress:
+  # --- Dashboard Ingress ---
+  dashboard:
+    enabled: true
+    host:
+      name: ceph.padmini.systems # Your desired URL for the dashboard
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    tls:
+      - secretName: ceph-dashboard-tls # cert-manager will create this secret
+        hosts:
+          - ceph.padmini.systems
+
+  # --- S3 (RGW) Ingress ---
+  rgw:
+    enabled: true
+    # This must match the name of the cephObjectStore defined above
+    objectStoreName: s3-store
+    host:
+      name: s3.padmini.systems # Your desired URL for the S3 endpoint
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      # For large file uploads, you may need to add this annotation:
+      # nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    tls:
+      - secretName: ceph-s3-gateway-tls # cert-manager will create this secret
+        hosts:
+          - s3.padmini.systems  
