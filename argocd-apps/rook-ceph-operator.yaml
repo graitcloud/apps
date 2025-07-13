@@ -7,17 +7,15 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
-  sources:
-    - repoURL: https://charts.rook.io/release
-      chart: rook-ceph
-      targetRevision: v1.17.6
-      helm:
-        valueFiles:
-          - $values-repo/rook-ceph-operator/values.yaml
-    - repoURL: https://github.com/graitcloud/apps.git
-      targetRevision: HEAD
-      path: rook-ceph-operator
-      ref: values-repo
+  source:
+    # 1. Point to the Helm Chart repository
+    repoURL: https://charts.rook.io/release
+    chart: rook-ceph
+    targetRevision: v1.17.6
+    helm:
+      # 2. Reference the values file directly from your Git repo
+      valueFiles:
+        - https://github.com/graitcloud/apps.git/raw/HEAD/rook-ceph-operator/values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: rook-ceph
@@ -27,4 +25,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true 
+      - ServerSideApply=true
