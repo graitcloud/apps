@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Kubeconfig
         run: |
-          echo "${{ secrets.PSYS_CENTOS_1_KUBE_CONFIG }}" > kubeconfig.yaml
+          echo "${{ secrets.PSYS_CENTOS_1_KUBE_CONFIG }}" | base64 --decode > kubeconfig.yaml
         env:
           KUBECONFIG: ./kubeconfig.yaml
       - name: Setup Kubectl
