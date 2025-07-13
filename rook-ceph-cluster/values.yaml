@@ -17,7 +17,7 @@ cephClusterSpec:
     useAllNodes: true
     useAllDevices: true
     # Device filter to avoid root disk
-    deviceFilter: ^sd[b-z]$
+    deviceFilter: ^vd[b-z]$
     config:
       osdsPerDevice: "1"
       osdMemoryTarget: "4096"
