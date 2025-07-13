@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-ingress
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://kubernetes.github.io/ingress-nginx
+      chart: ingress-nginx
+      targetRevision: 4.13.0
+      helm:
+        valueFiles:
+          - $values-repo/nginx-ingress/values.yaml
+    - repoURL: https://github.com/graitcloud/apps.git
+      targetRevision: HEAD
+      ref: values-repo
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: ingress-nginx
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
