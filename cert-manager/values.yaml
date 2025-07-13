@@ -1,6 +1,5 @@
 installCRDs: false
-featureGates:
-  - "ACMEHTTP01IngressPathTypeExact=false"
+featureGates: "ACMEHTTP01IngressPathTypeExact=false"
 resources:
   requests:
     cpu: 100m
