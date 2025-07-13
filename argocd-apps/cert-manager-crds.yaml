@@ -8,12 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/cert-manager/cert-manager.git
-    targetRevision: v1.18.2
-    path: "."
-    kustomize:
-      resources:
-        - https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.crds.yaml
+    repoURL: https://github.com/graitcloud/apps.git
+    targetRevision: HEAD
+    path: cert-manager-crds
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cert-manager
