@@ -19,8 +19,8 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: 'v1.33.2'
-      - name: Apply Argo CD Application Manifest
+      - name: Apply Root Argo CD Application
         run: |
-          kubectl apply -f nginx-ingress/app.yaml
+          kubectl apply -f root-app.yaml
         env:
           KUBECONFIG: ./kubeconfig.yaml

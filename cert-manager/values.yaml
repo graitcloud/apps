@@ -1,0 +1,15 @@
+installCRDs: false
+prometheus:
+  enabled: true
+webhook:
+  enabled: true
+cainjector:
+  enabled: true
+controller:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
