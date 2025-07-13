@@ -1,0 +1,137 @@
+# Operator namespace
+operatorNamespace: rook-ceph
+
+# Ceph Cluster Configuration
+cephClusterSpec:
+  cephVersion:
+    image: quay.io/ceph/ceph:v18.2.0
+  dataDirHostPath: /var/lib/rook
+  mon:
+    count: 1
+    allowMultiplePerNode: true
+  dashboard:
+    enabled: true
+    ssl: false
+  storage:
+    # AUTOMATIC DEVICE DISCOVERY with safety filter
+    useAllNodes: true
+    useAllDevices: true
+    # Device filter to avoid root disk
+    deviceFilter: ^sd[b-z]$
+    config:
+      osdsPerDevice: "1"
+      osdMemoryTarget: "4096"
+      # BlueStore settings
+      osdStoreType: "bluestore"
+      # BlueStore compression for better space usage
+      bluestoreCompressionMode: "aggressive"
+  network:
+    hostNetwork: false
+  disruptionManagement:
+    managePodBudgets: false
+  mgr:
+    count: 1
+  crashCollector:
+    disable: true
+  # Single replica for non-HA setup
+  healthCheck:
+    daemonHealth:
+      mon:
+        interval: "45s"
+        timeout: "30s"
+
+# Block Storage (RBD)
+cephBlockPools:
+  - name: ceph-blockpool
+    spec:
+      replicated:
+        size: 1
+        requireSafeReplicaSize: false
+    storageClass:
+      enabled: true
+      isDefault: true
+      name: ceph-block
+      reclaimPolicy: Delete
+      allowVolumeExpansion: true
+      parameters:
+        clusterID: rook-ceph
+        pool: ceph-blockpool
+        imageFormat: "2"
+        imageFeatures: layering
+
+# File System (CephFS)
+cephFileSystems:
+  - name: ceph-filesystem
+    spec:
+      metadataPool:
+        replicated:
+          size: 1
+          requireSafeReplicaSize: false
+      dataPools:
+        - name: data0
+          replicated:
+            size: 1
+            requireSafeReplicaSize: false
+      preserveFilesystemOnDelete: false
+      preservePoolsOnDelete: false
+    storageClass:
+      enabled: true
+      name: ceph-filesystem
+      reclaimPolicy: Delete
+      allowVolumeExpansion: true
+      pool: data0
+      parameters:
+        clusterID: rook-ceph
+        fsName: ceph-filesystem
+
+# Object Storage (RGW)
+cephObjectStores:
+  - name: ceph-objectstore
+    spec:
+      metadataPool:
+        replicated:
+          size: 1
+          requireSafeReplicaSize: false
+      dataPool:
+        replicated:
+          size: 1
+          requireSafeReplicaSize: false
+      gateway:
+        type: s3
+        port: 80
+        securePort: 443
+        instances: 1
+        sslCertificateRef: ""
+    storageClass:
+      enabled: true
+      name: ceph-bucket
+      reclaimPolicy: Delete
+      parameters:
+        objectStoreName: ceph-objectstore
+        objectStoreNamespace: rook-ceph
+        region: us-east-1
+
+# Enable toolbox for debugging
+toolbox:
+  enabled: true
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  # Security context for toolbox
+  containerSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 2016
+    runAsGroup: 2016
+    capabilities:
+      drop:
+        - ALL
+
+# Monitoring (optional - enable when Prometheus is available)
+monitoring:
+  enabled: false
+  # Uncomment when Prometheus is ready:
+  # createPrometheusRules: true
+  # metricsDisabled: false 
