@@ -93,9 +93,7 @@ cephObjectStores:
     spec:
       gateway:
         instances: 1
-        ports:
-          http: 80
-          https: 443
+        port: 80
         securePort: 443
         sslCertificateRef: ceph-s3-gateway-tls # cert-manager will create this secret
       metadataPool:
