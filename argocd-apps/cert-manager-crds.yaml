@@ -10,7 +10,10 @@ spec:
   source:
     repoURL: https://github.com/cert-manager/cert-manager.git
     targetRevision: v1.18.2
-    path: deploy/crds
+    path: "."
+    kustomize:
+      resources:
+        - https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.crds.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cert-manager
