@@ -140,6 +140,7 @@ ingress:
   # --- Dashboard Ingress ---
   dashboard:
     enabled: true
+    ingressClassName: nginx
     host:
       name: ceph.padmini.systems # Your desired URL for the dashboard
     annotations:
@@ -156,6 +157,7 @@ ingress:
     enabled: true
     # This must match the name of the cephObjectStore defined above
     objectStoreName: s3-store
+    ingressClassName: nginx
     host:
       name: s3.padmini.systems # Your desired URL for the S3 endpoint
     annotations:
