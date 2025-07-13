@@ -74,6 +74,9 @@ cephFileSystems:
             requireSafeReplicaSize: false
       preserveFilesystemOnDelete: false
       preservePoolsOnDelete: false
+      metadataServer:
+        activeCount: 1
+        activeStandby: true      
     storageClass:
       enabled: true
       name: ceph-filesystem
@@ -96,12 +99,6 @@ cephObjectStores:
         replicated:
           size: 1
           requireSafeReplicaSize: false
-      gateway:
-        type: s3
-        port: 80
-        securePort: 443
-        instances: 1
-        sslCertificateRef: ""
     storageClass:
       enabled: true
       name: ceph-bucket
