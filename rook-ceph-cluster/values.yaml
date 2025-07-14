@@ -93,6 +93,12 @@ cephFileSystems:
       parameters:
         clusterID: rook-ceph
         fsName: ceph-filesystem
+        csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+        csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+        csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+        csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+        csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+        csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph        
 
 # Object Storage (RGW)
 cephObjectStores:
@@ -111,26 +117,16 @@ cephObjectStores:
         replicated:
           size: 1
           requireSafeReplicaSize: false
-    storageClass:
-      enabled: true
-      name: ceph-bucket
-      reclaimPolicy: Delete
-      parameters:
-        objectStoreName: ceph-objectstore
-        objectStoreNamespace: rook-ceph
-        region: us-east-1
     ingress:
       enabled: true
       ingressClassName: nginx
       host:
-        name: s3.padmini.systems # Your desired URL for the S3 endpoint
+        name: s3.padmini.systems
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
         nginx.ingress.kubernetes.io/ssl-redirect: "true"
-        # For large file uploads, you may need to add this annotation:
-        # nginx.ingress.kubernetes.io/proxy-body-size: "0"
       tls:
-        - secretName: ceph-s3-gateway-tls # cert-manager will create this secret
+        - secretName: ceph-s3-gateway-tls
           hosts:
             - s3.padmini.systems        
 
