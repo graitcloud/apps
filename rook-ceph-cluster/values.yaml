@@ -145,6 +145,13 @@ toolbox:
       drop:
         - ALL
 
+# --- ADD THIS ENTIRE BLOCK ---
+# CSI settings for cross-namespace functionality
+csi:
+  # This enables the CSI-Addons sidecar which will automatically
+  # copy the required CSI secrets to other namespaces.
+  csiAddons:
+    enabled: true
 # Monitoring (optional - enable when Prometheus is available)
 monitoring:
   enabled: false
