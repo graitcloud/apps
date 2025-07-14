@@ -25,6 +25,8 @@ resources:
 
 # Enable CSI drivers with proper observability
 csi:
+  csiAddons:
+    enabled: true
   enableRbdDriver: true
   enableCephfsDriver: true
   enableLiveness: true
