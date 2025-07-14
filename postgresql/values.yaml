@@ -1,0 +1,14 @@
+architecture: standalone
+auth:
+  username: "app_user"
+  database: "app_db"
+primary:
+  service:
+    type: NodePort
+    nodePorts:
+      postgresql: 30432
+  persistence:
+    enabled: true
+    size: 20Gi
+    storageClass: ""
+  resourcesPreset: "nano"

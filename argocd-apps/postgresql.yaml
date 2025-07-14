@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgresql
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: 'oci://registry-1.docker.io/bitnamicharts'
+      chart: postgresql
+      targetRevision: 16.7.18
+      helm:
+        valueFiles:
+          - $values-repo/postgresql/values.yaml
+    - repoURL: https://github.com/graitcloud/apps.git
+      targetRevision: HEAD
+      ref: values-repo
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
