@@ -117,6 +117,8 @@ cephObjectStores:
         replicated:
           size: 1
           requireSafeReplicaSize: false
+    storageClass:
+      enabled: false          
     ingress:
       enabled: true
       ingressClassName: nginx
