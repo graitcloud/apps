@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: root-base
   namespace: argocd
   labels:
     cluster-name: padmini
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: root-base
   source:
     repoURL: https://github.com/graitcloud/apps.git
     targetRevision: HEAD
