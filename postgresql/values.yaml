@@ -10,6 +10,6 @@ primary:
       postgresql: 30432
   persistence:
     enabled: true
-    size: 25Gi
+    size: 20Gi
     storageClass: ""
   resourcesPreset: "nano"
