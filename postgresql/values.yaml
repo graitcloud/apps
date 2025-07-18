@@ -1,7 +1,8 @@
 architecture: standalone
 auth:
-  username: "app_user"
-  database: "app_db"
+  existingSecret: postgresql
+  username: psys-dev
+  database: padmini
 primary:
   service:
     type: NodePort
