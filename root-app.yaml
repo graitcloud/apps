@@ -8,7 +8,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: root-base
+  project: default
   source:
     repoURL: https://github.com/graitcloud/apps.git
     targetRevision: HEAD
