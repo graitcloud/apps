@@ -2,6 +2,10 @@ controller:
   kind: DaemonSet
   hostNetwork: true
   dnsPolicy: ClusterFirstWithHostNet
+  # Additional command line arguments to pass to Ingress-Nginx Controller
+  # Enable SSL passthrough for applications that need to handle SSL termination themselves
+  extraArgs:
+    enable-ssl-passthrough: ""
   service:
     enabled: false
   resources:
@@ -10,4 +14,4 @@ controller:
       memory: 256Mi
     requests:
       cpu: 100m
-      memory: 128Mi    
+      memory: 128Mi
