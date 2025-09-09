@@ -3,10 +3,9 @@ kind: CiliumClusterwideNetworkPolicy
 metadata:
   name: deny-all-restricted-namespaces
 spec:
-  namespaceSelector:
+  endpointSelector:
     matchLabels:
-      access: restricted
-  endpointSelector: {}
+      io.cilium.k8s.namespace.labels.access: restricted
   ingressDeny:
   - {}
   egressDeny:
