@@ -5,7 +5,9 @@ metadata:
 spec:
   namespaceSelector:
     matchLabels:
-      access: restricted  
-  endpointSelector: {}    
-  ingress: []
-  egress: []
+      access: restricted
+  endpointSelector: {}
+  ingressDeny:
+  - {}
+  egressDeny:
+  - {}
