@@ -9,10 +9,9 @@ metadata:
   labels:
     policy-type: restricted-access
     team: platform-security
+    visibility: restricted
 spec:
   priority: 100
-  labels:
-    visibility: restricted
   endpointSelector:
     matchLabels:
       io.cilium.k8s.namespace.labels.access: restricted
