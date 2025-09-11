@@ -21,11 +21,11 @@ spec:
   ingress:
   - fromEndpoints:
     - matchLabels:
-        app.kubernetes.io/component: ingress-controller
+        app.kubernetes.io/name: ingress-nginx
   egress:
   - toEndpoints:
     - matchLabels:
-        app.kubernetes.io/component: ingress-controller
+        app.kubernetes.io/name: ingress-nginx
   - toEntities:
     - world
     - cluster
