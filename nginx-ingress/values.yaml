@@ -2,12 +2,25 @@ controller:
   kind: DaemonSet
   hostNetwork: true
   dnsPolicy: ClusterFirstWithHostNet
-  # Additional command line arguments to pass to Ingress-Nginx Controller
-  # Enable SSL passthrough for applications that need to handle SSL termination themselves
+
+  # Keep SSL passthrough if you need backends to terminate TLS themselves
   extraArgs:
     enable-ssl-passthrough: ""
+
+  # No Service needed when binding host ports directly
   service:
     enabled: false
+
+  # >>> NEW: nginx config for real client IPs safely (no proxy in front) <<<
+  config:
+    use-proxy-protocol: "false"
+    use-forwarded-headers: "true"
+    compute-full-forwarded-for: "true"
+    real-ip-header: "X-Forwarded-For"
+    proxy-real-ip-cidr: "127.0.0.1/32"
+  # ^ Trust only localhost as a header source; all internet XFF is ignored.
+  #   NGINX will still set X-Forwarded-For to the real socket IP so your apps see the true client IP.
+
   resources:
     limits:
       cpu: 200m
