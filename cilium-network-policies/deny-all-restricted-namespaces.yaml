@@ -10,6 +10,11 @@ spec:
     matchLabels:
       io.cilium.k8s.namespace.labels.access: restricted
 
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        padmini.systems/api: broadcast-api
+
   # Allow OUTGOING traffic only if it matches this rule
   egress:
   - toEndpoints:
