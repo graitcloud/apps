@@ -1,17 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  creationTimestamp: "2025-09-11T00:50:06Z"
   labels:
     access: restricted
     created-by: account-service
     entity-namespace: "true"
     kubernetes.io/metadata.name: satish-kaushik-t45d6
   name: satish-kaushik-t45d6
-  resourceVersion: "17126846"
-  uid: ac817417-b320-4b55-aec5-9197dd150845
-spec:
-  finalizers:
-  - kubernetes
-status:
-  phase: Active

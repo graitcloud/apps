@@ -1,0 +1,19 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: allow-all-for-network-permission-label
+  annotations:
+    description: "Allows all ingress and egress traffic for pods labeled with 'padmini.systems/network-permission: allow'."
+spec:
+  # This policy applies to any pod cluster-wide with the 'allow' label
+  endpointSelector:
+    matchLabels:
+      padmini.systems/network-permission: allow
+
+  # Allow ALL incoming traffic from any source (internal or external)
+  ingress:
+  - {}
+
+  # Allow ALL outgoing traffic to any destination (internal or external)
+  egress:
+  - {}
