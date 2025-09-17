@@ -2,23 +2,22 @@ apiVersion: cilium.io/v2
 kind: CiliumClusterwideNetworkPolicy
 metadata:
   name: restricted-namespaces-egress-dns-policy
-  annotations:
-    description: "Allow pods in restricted namespaces to send DNS queries to the internal kube-dns service."
 spec:
-  # This policy applies to pods in any namespace with the label 'access: restricted'
   endpointSelector:
     matchLabels:
       io.cilium.k8s.namespace.labels.access: restricted
+    matchExpressions:
+      - key: padmini.systems/network-permission
+        operator: NotIn
+        values: ["allow"]
 
   ingress:
   - fromEndpoints:
     - matchLabels:
         padmini.systems/api: broadcast-api
 
-  # Allow OUTGOING traffic only if it matches this rule
   egress:
   - toEndpoints:
-    # This selector perfectly matches the labels on your CoreDNS pods
     - matchLabels:
         k8s:k8s-app: kube-dns
         k8s:io.kubernetes.pod.namespace: kube-system
