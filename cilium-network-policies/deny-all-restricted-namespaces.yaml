@@ -4,12 +4,13 @@ metadata:
   name: restricted-namespaces-egress-dns-policy
 spec:
   endpointSelector:
-    matchLabels:
-      io.cilium.k8s.namespace.labels.access: restricted
     matchExpressions:
       - key: padmini.systems/network-permission
         operator: NotIn
         values: ["allow"]
+      - key: io.cilium.k8s.namespace.labels.access
+        operator: In
+        values: ["restricted"]        
 
   ingress:
   - fromEndpoints:
