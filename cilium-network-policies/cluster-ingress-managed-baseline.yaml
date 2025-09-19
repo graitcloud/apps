@@ -1,0 +1,30 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: cluster-ingress-managed-baseline
+  labels:
+    managed-by: platform
+    component: ingress-nginx
+  annotations:
+    description: "Cluster-wide baseline for ingress controllers: allow node/host scrape on 10254 and egress to kube-apiserver:443."
+spec:
+  endpointSelector:
+    matchLabels:
+      padmini.systems/tenant-resource-type: ingress
+
+  ingress:
+    - fromEntities:
+        - host
+        - remote-node
+      toPorts:
+        - ports:
+            - port: "10254"
+              protocol: TCP
+
+  egress:
+    - toEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
