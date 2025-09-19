@@ -6,25 +6,31 @@ metadata:
     managed-by: platform
     component: ingress-nginx
   annotations:
-    description: "Cluster-wide baseline for ingress controllers: allow node/host scrape on 10254 and egress to kube-apiserver:443."
+    description: "Baseline policy for ingress controllers: allow host access on 10254 and egress to kube-apiserver on external IP:6443"
 spec:
   endpointSelector:
-    matchLabels:
-      padmini.systems/tenant-resource-type: ingress
+    matchExpressions:
+      - key: padmini.systems/tenant-resource-type
+        operator: In
+        values: ["ingress"]
+      - key: padmini.systems/network-permission
+        operator: In
+        values: ["allow"]
 
   ingress:
+    # Allow host (internal IP) to access ingress controller on port 10254
     - fromEntities:
         - host
-        - remote-node
       toPorts:
         - ports:
             - port: "10254"
               protocol: TCP
 
   egress:
+    # Allow ingress controller to access kube-apiserver on external IP (public IP) port 6443
     - toEntities:
-        - kube-apiserver
+        - host
       toPorts:
         - ports:
-            - port: "443"
+            - port: "6443"
               protocol: TCP
