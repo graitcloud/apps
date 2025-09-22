@@ -7,7 +7,7 @@ metadata:
     component: cert-manager
     priority: high
   annotations:
-    description: "High-priority policy to allow cert-manager access to ingress controllers on port 80 for certificate validation"
+    description: "High-priority policy for complete cert-manager workflow: allows cert-manager access to ingress controllers (port 80) and ingress controller access to ACME HTTP solver pods (port 8089)"
 spec:
   # Target ingress controllers in restricted namespaces with network permission
   endpointSelector:
@@ -34,4 +34,14 @@ spec:
       toPorts:
         - ports:
             - port: "80"
+              protocol: TCP
+
+  egress:
+    # Allow ingress controllers to reach ACME HTTP solver pods for certificate validation
+    - toEndpoints:
+        - matchLabels:
+            acme.cert-manager.io/http01-solver: "true"
+      toPorts:
+        - ports:
+            - port: "8089"
               protocol: TCP
