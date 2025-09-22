@@ -1,0 +1,38 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: cert-manager-ingress-access
+  labels:
+    managed-by: platform
+    component: cert-manager
+    priority: high
+  annotations:
+    description: "High-priority policy to allow cert-manager access to ingress controllers on port 80 for certificate validation"
+spec:
+  # Target ingress controllers in restricted namespaces with network permission
+  endpointSelector:
+    matchExpressions:
+      - key: padmini.systems/tenant-resource-type
+        operator: In
+        values: ["ingress"]
+      - key: padmini.systems/network-permission
+        operator: In
+        values: ["allow"]
+      - key: io.cilium.k8s.namespace.labels.access
+        operator: In
+        values: ["restricted"]
+
+  ingress:
+    # Allow cert-manager pods to access ingress controllers on port 80 for ACME challenges
+    - fromEndpoints:
+        - matchLabels:
+            instance: cert-manager
+            component: controller
+          matchExpressions:
+            - key: k8s:io.kubernetes.pod.namespace
+              operator: In
+              values: ["cert-manager"]
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
