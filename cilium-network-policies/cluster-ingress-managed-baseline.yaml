@@ -25,6 +25,19 @@ spec:
         - ports:
             - port: "10254"
               protocol: TCP
+    
+    # Allow cert-manager pods to access ingress controller on port 80
+    - fromEndpoints:
+        - matchLabels:
+            instance: cert-manager
+          matchExpressions:
+            - key: k8s:io.kubernetes.pod.namespace
+              operator: In
+              values: ["cert-manager"]
+      toPorts:
+        - ports:
+            - port: "80"
+              protocol: TCP
 
   egress:
     # Allow ingress controller to access kube-apiserver on external IP (public IP) port 6443
