@@ -27,7 +27,6 @@ spec:
     - fromEndpoints:
         - matchLabels:
             instance: cert-manager
-            component: controller
           matchExpressions:
             - key: k8s:io.kubernetes.pod.namespace
               operator: In
