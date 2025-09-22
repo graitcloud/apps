@@ -1,0 +1,35 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: cert-manager-acme-solver-access
+  labels:
+    managed-by: platform
+    component: cert-manager
+    priority: high
+  annotations:
+    description: "High-priority policy to allow ingress controllers to access ACME HTTP solver pods on port 8089 for certificate validation"
+spec:
+  # Target ACME HTTP solver pods in restricted namespaces
+  endpointSelector:
+    matchExpressions:
+      - key: acme.cert-manager.io/http01-solver
+        operator: In
+        values: ["true"]
+      - key: io.cilium.k8s.namespace.labels.access
+        operator: In
+        values: ["restricted"]
+
+  ingress:
+    # Allow ingress controllers to access ACME HTTP solver pods on port 8089
+    - fromEndpoints:
+        - matchLabels:
+            padmini.systems/tenant-resource-type: ingress
+            padmini.systems/network-permission: allow
+          matchExpressions:
+            - key: io.cilium.k8s.namespace.labels.access
+              operator: In
+              values: ["restricted"]
+      toPorts:
+        - ports:
+            - port: "8089"
+              protocol: TCP
