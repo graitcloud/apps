@@ -1,9 +1,210 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.2.7">
-  <diagram name="Page-1" id="ZfAlSD2h1x_KzizbJ7IX">
-    <mxGraphModel>
+  <diagram name="Network High Level" id="ZfAlSD2h1x_KzizbJ7IX">
+    <mxGraphModel dx="1665" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-1" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=#ffffff;strokeColor=#000000;rounded=0;" value="ISP / Internet" vertex="1">
+          <mxGeometry height="100" width="1200" x="120" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-2" parent="6GKH79Dy3-5ubsydcYS2-1" style="shape=cloud;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;" value="Internet / Upstream ISP" vertex="1">
+          <mxGeometry height="70" width="180" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-3" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=#ffffff;strokeColor=#000000;rounded=0;" value="Edge / BGP Routers" vertex="1">
+          <mxGeometry height="120" width="1200" x="120" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-4" parent="6GKH79Dy3-5ubsydcYS2-3" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffcc99;" value="Edge-R1&#xa;(BGP, VRRP)" vertex="1">
+          <mxGeometry height="90" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-5" parent="6GKH79Dy3-5ubsydcYS2-3" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffcc99;" value="Edge-R2&#xa;(BGP, VRRP)" vertex="1">
+          <mxGeometry height="90" width="140" x="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-6" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=#ffffff;strokeColor=#000000;rounded=0;" value="Core / Spine" vertex="1">
+          <mxGeometry height="120" width="1200" x="120" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-7" parent="6GKH79Dy3-5ubsydcYS2-6" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#cce5ff;" value="Spine-1" vertex="1">
+          <mxGeometry height="90" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-8" parent="6GKH79Dy3-5ubsydcYS2-6" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#cce5ff;" value="Spine-2" vertex="1">
+          <mxGeometry height="90" width="140" x="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-9" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=#ffffff;strokeColor=#000000;rounded=0;" value="Racks (Rack 1 / Rack 2 / Rack 3)" vertex="1">
+          <mxGeometry height="240" width="1640" x="120" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-10" parent="6GKH79Dy3-5ubsydcYS2-9" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#ffffff;" value="Rack 1" vertex="1">
+          <mxGeometry height="210" width="380" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-11" parent="6GKH79Dy3-5ubsydcYS2-10" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#cce5ff;" value="ToR-1" vertex="1">
+          <mxGeometry height="40" width="120" x="130" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-12" parent="6GKH79Dy3-5ubsydcYS2-10" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#38761d;fillColor=#d5e8d4;" value="srv-r1-01" vertex="1">
+          <mxGeometry height="40" width="100" x="40" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-13" parent="6GKH79Dy3-5ubsydcYS2-9" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#ffffff;" value="Rack 2" vertex="1">
+          <mxGeometry height="210" width="380" x="380" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-14" parent="6GKH79Dy3-5ubsydcYS2-13" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#cce5ff;" value="ToR-2" vertex="1">
+          <mxGeometry height="40" width="120" x="130" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-15" parent="6GKH79Dy3-5ubsydcYS2-13" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#38761d;fillColor=#d5e8d4;" value="srv-r2-01" vertex="1">
+          <mxGeometry height="40" width="100" x="40" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-16" parent="6GKH79Dy3-5ubsydcYS2-9" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#ffffff;" value="Rack 3" vertex="1">
+          <mxGeometry height="210" width="380" x="760" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-17" parent="6GKH79Dy3-5ubsydcYS2-16" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#1c4587;fillColor=#cce5ff;" value="ToR-3" vertex="1">
+          <mxGeometry height="40" width="120" x="130" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-18" parent="6GKH79Dy3-5ubsydcYS2-16" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#38761d;fillColor=#d5e8d4;" value="srv-r3-01" vertex="1">
+          <mxGeometry height="40" width="100" x="40" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-19" parent="6GKH79Dy3-5ubsydcYS2-9" style="text;whiteSpace=wrap;html=1;align=left;" value="Same pattern for all 60 servers&#xa;(NIC1 External / VLAN 100, bond0 Cluster / VLAN 200, NIC4 Ceph / VLAN 310/320)" vertex="1">
+          <mxGeometry height="210" width="500" x="1140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-20" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=#ffffff;strokeColor=#000000;rounded=0;" value="OOB / Management" vertex="1">
+          <mxGeometry height="400" width="820" x="1340" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-21" parent="6GKH79Dy3-5ubsydcYS2-20" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#674ea7;fillColor=#e1d5e7;" value="OOB-SW1" vertex="1">
+          <mxGeometry height="370" width="120" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-22" parent="6GKH79Dy3-5ubsydcYS2-20" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#674ea7;fillColor=#e1d5e7;" value="OOB-SW2" vertex="1">
+          <mxGeometry height="370" width="120" x="120" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-23" parent="6GKH79Dy3-5ubsydcYS2-20" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#674ea7;fillColor=#f3f0f9;" value="Rack 1 iDRAC&#xa;(20 ports)" vertex="1">
+          <mxGeometry height="370" width="140" x="240" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-24" parent="6GKH79Dy3-5ubsydcYS2-20" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#674ea7;fillColor=#f3f0f9;" value="Rack 2 iDRAC&#xa;(20 ports)" vertex="1">
+          <mxGeometry height="370" width="140" x="380" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-25" parent="6GKH79Dy3-5ubsydcYS2-20" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#674ea7;fillColor=#f3f0f9;" value="Rack 3 iDRAC&#xa;(20 ports)" vertex="1">
+          <mxGeometry height="370" width="140" x="520" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-26" parent="6GKH79Dy3-5ubsydcYS2-20" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#674ea7;fillColor=#e1d5e7;" value="Mgmt Jump Host / VPN" vertex="1">
+          <mxGeometry height="370" width="160" x="660" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-27" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=#ffffff;strokeColor=#000000;rounded=0;" value="Management Services" vertex="1">
+          <mxGeometry height="160" width="1390" x="120" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-28" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#b7b7b7;fillColor=#fff2cc;" value="VLAN &amp; IP Summary&#xa;- VLAN 10: iDRAC-MGMT&#xa;- VLAN 100: External&#xa;- VLAN 200: Cluster-MGMT&#xa;- VLAN 310/320: Ceph" vertex="1">
+          <mxGeometry height="130" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-29" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#b7b7b7;fillColor=#fff2cc;" value="Security Notes&#xa;- OOB not reachable from Internet&#xa;- Public only via LB / Floating IPs&#xa;- Tenant traffic in Neutron VXLANs" vertex="1">
+          <mxGeometry height="130" width="260" x="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-30" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#b45f06;fillColor=#fff2cc;" value="OpenStack Ctrl-1" vertex="1">
+          <mxGeometry height="130" width="130" x="480" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-31" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#b45f06;fillColor=#fff2cc;" value="OpenStack Ctrl-2" vertex="1">
+          <mxGeometry height="130" width="130" x="610" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-32" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#b45f06;fillColor=#fff2cc;" value="OpenStack Ctrl-3" vertex="1">
+          <mxGeometry height="130" width="130" x="740" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-33" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#b45f06;fillColor=#fff2cc;" value="NetBox&#xa;(IPAM / SoT)&#xa;10.0.200.50" vertex="1">
+          <mxGeometry height="130" width="150" x="870" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-34" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#b45f06;fillColor=#fff2cc;" value="Prometheus" vertex="1">
+          <mxGeometry height="130" width="120" x="1020" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-35" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#b45f06;fillColor=#fff2cc;" value="Grafana" vertex="1">
+          <mxGeometry height="130" width="120" x="1140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-36" parent="6GKH79Dy3-5ubsydcYS2-27" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#b45f06;fillColor=#fff2cc;" value="LibreNMS / Zabbix" vertex="1">
+          <mxGeometry height="130" width="130" x="1260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-37" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-38" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-39" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-4" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;dashed=1;" target="6GKH79Dy3-5ubsydcYS2-5" value="iBGP + VRRP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-40" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 100 (External)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-41" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-8" value="VLAN 100 (External)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-42" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 100 (External)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-43" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-8" value="VLAN 100 (External)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-44" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-11" value="VLAN 100/200/310/320 (trunk)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-45" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-14" value="VLAN 100/200/310/320 (trunk)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-46" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-17" value="VLAN 100/200/310/320 (trunk)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-47" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-11" value="VLAN 100/200/310/320 (trunk)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-48" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-14" value="VLAN 100/200/310/320 (trunk)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-49" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-17" value="VLAN 100/200/310/320 (trunk)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-50" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-12" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-11" value="NIC1 – External / VLAN 100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-51" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-12" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-11" value="bond0 – Cluster / VLAN 200">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-52" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-12" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-11" value="NIC4 – Ceph / VLAN 310/320">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-53" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-21" value="VLAN 10 – iDRAC-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-54" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-21" value="VLAN 10 – iDRAC-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-55" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-21" value="VLAN 10 – iDRAC-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-56" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-21" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-57" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 200 – Cluster-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-58" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 200 – Cluster-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-59" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 200 – Cluster-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-60" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 200 – Cluster-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-61" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 200 – Cluster-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-62" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 200 – Cluster-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-63" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="6GKH79Dy3-5ubsydcYS2-7" value="VLAN 200 – Cluster-MGMT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-64" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-33" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;" target="6GKH79Dy3-5ubsydcYS2-4" value="Source of Truth&#xa;IPs / VLANs / Devices">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-65" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-33" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;" target="6GKH79Dy3-5ubsydcYS2-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-66" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-33" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;" target="6GKH79Dy3-5ubsydcYS2-11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6GKH79Dy3-5ubsydcYS2-67" edge="1" parent="1" source="6GKH79Dy3-5ubsydcYS2-33" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;" target="6GKH79Dy3-5ubsydcYS2-30" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
