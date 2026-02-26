@@ -3,6 +3,19 @@ controller:
   hostNetwork: true
   dnsPolicy: ClusterFirstWithHostNet
 
+  # Labels applied to the controller Deployment/DaemonSet resource
+  # Required by CiliumClusterwideNetworkPolicy selectors for ACME HTTP-01 challenge traffic
+  labels:
+    padmini.systems/network-permission: allow
+    padmini.systems/tenant-resource-type: ingress
+
+  # Labels applied to the controller pods
+  # Required by CiliumClusterwideNetworkPolicy: cert-manager-acme-solver-access
+  # and cert-manager-ingress-access to allow traffic on ports 80, 443, and 8089
+  podLabels:
+    padmini.systems/network-permission: allow
+    padmini.systems/tenant-resource-type: ingress
+
   # Keep SSL passthrough if you need backends to terminate TLS themselves
   extraArgs:
     enable-ssl-passthrough: ""
@@ -28,3 +41,9 @@ controller:
     requests:
       cpu: 100m
       memory: 128Mi
+
+# Label applied to the ingress-nginx namespace
+# Required by CiliumClusterwideNetworkPolicy selectors that match on
+# io.cilium.k8s.namespace.labels.access=restricted
+namespaceLabels:
+  access: restricted

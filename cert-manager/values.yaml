@@ -1,5 +1,13 @@
 installCRDs: false
 featureGates: "ACMEHTTP01IngressPathTypeExact=false"
+
+# Disable ACME HTTP-01 self-check: the cluster cannot hairpin traffic back through
+# the public IP (185.228.136.185), causing cert-manager's internal validation to
+# timeout with "context deadline exceeded". Let's Encrypt performs its own independent
+# validation from the internet, so this self-check is not required.
+extraArgs:
+  - --acme-http01-solver-check-retries=0
+
 resources:
   requests:
     cpu: 100m

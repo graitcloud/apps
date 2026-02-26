@@ -1,3 +1,23 @@
+# =============================================================================
+# EXTERNAL LABEL DEPENDENCIES
+# =============================================================================
+# This policy selects endpoints using labels that must be applied externally
+# (i.e. via Helm values, not by this manifest). If these labels are missing,
+# Cilium will silently drop traffic and ACME HTTP-01 challenges will fail.
+#
+# 1. ingress-nginx NAMESPACE must have:
+#      access: restricted
+#    (Set via namespaceLabels in nginx-ingress Helm values.yaml)
+#
+# 2. ingress-nginx controller PODS must have:
+#      padmini.systems/network-permission: allow
+#      padmini.systems/tenant-resource-type: ingress
+#    (Set via podLabels in nginx-ingress Helm values.yaml)
+#
+# Verify with:
+#   kubectl get ns ingress-nginx --show-labels | grep access
+#   kubectl get pods -n ingress-nginx --show-labels | grep padmini
+# =============================================================================
 apiVersion: cilium.io/v2
 kind: CiliumClusterwideNetworkPolicy
 metadata:
